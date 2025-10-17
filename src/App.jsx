@@ -85,7 +85,7 @@ const App = () => {
               </section>
               
               
-              <section id="contact" className="py-20">
+              <section id="contact">
                 <Contact />
               </section>
             </main>

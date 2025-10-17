@@ -1,44 +1,34 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUp } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Github, Globe } from 'lucide-react';
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
 
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-background/80 border-t border-gray-800 mt-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0">
-            <span className="text-2xl font-bold font-display text-gradient">Portfolio.</span>
-            <p className="mt-2 text-gray-400 max-w-md">
-              Creating exceptional digital experiences through code and design.
-            </p>
-          </div>
-          
-          <div className="flex flex-col items-center md:items-end">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={scrollToTop}
-              className="mb-4 rounded-full p-2 bg-primary/10 hover:bg-primary/20"
-              aria-label="Scroll to top"
-            >
-              <ArrowUp className="h-5 w-5" />
-            </Button>
-            
-            <p className="text-sm text-gray-500">
-              © {currentYear} All rights reserved.
-            </p>
-          </div>
+    <footer className="border-t border-gray-800 bg-background/95 relative z-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex items-center justify-center gap-4">
+          <span className="text-sm text-gray-400">© {currentYear} Steven Kiernan</span>
+          <span className="text-gray-600">•</span>
+          <a
+            href="https://github.com/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition-colors"
+            aria-label="GitHub"
+          >
+            <Github className="h-4 w-4" />
+          </a>
+          <a
+            href="https://yourportfolio.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-white transition-colors"
+            aria-label="Portfolio"
+          >
+            <Globe className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </footer>
