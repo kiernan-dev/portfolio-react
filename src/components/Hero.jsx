@@ -38,7 +38,7 @@ const Hero = () => {
             className="mb-4"
           >
             <span className="text-sm md:text-base font-medium text-gray-400 tracking-wider uppercase">
-              Software Engineer & Graphic Designer
+              Senior Full-Stack Engineer | React/Node.js
             </span>
           </motion.div>
           

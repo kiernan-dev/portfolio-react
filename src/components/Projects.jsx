@@ -7,60 +7,135 @@ import { cn } from '@/lib/utils';
 const projects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'A full-featured e-commerce platform with product management, cart functionality, and secure checkout process.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    image: 'E-commerce website dashboard showing product listings, sales analytics, and customer management interface',
-    link: '#',
-    github: '#',
+    title: 'VentureMap',
+    description: 'AI-powered business plan generator that creates comprehensive, professional business plans in minutes.',
+    tags: [
+      { name: 'React', icon: <img src="/icons/react.png" alt="React" className="h-8 w-8" /> },
+      { name: 'TypeScript', icon: <img src="/icons/typescript.png" alt="TypeScript" className="h-8 w-8" /> },
+      { name: 'Node.js', icon: <img src="/icons/nodejs.png" alt="Node.js" className="h-8 w-8" /> },
+      { name: 'Express', icon: <img src="/icons/express.png" alt="Express" className="h-8 w-8" /> },
+      { name: 'OpenAI', icon: <img src="/icons/chatGPT.png" alt="OpenAI" className="h-8 w-8" /> },
+      { name: 'TailwindCSS', icon: <img src="/icons/tailwind.png" alt="TailwindCSS" className="h-8 w-8" /> },
+      { name: 'pnpm', icon: <img src="/icons/pnpm.png" alt="pnpm" className="h-8 w-8" /> }
+    ],
+    image: '/webp/proj-venmap.webp',
+    link: 'https://venture-map.com',
+    github: 'https://github.com/kiernan-dev/venture-map',
     featured: true,
   },
   {
     id: 2,
-    title: 'Portfolio Website',
-    description: 'A responsive portfolio website with 3D animations, interactive elements, and optimized performance.',
-    tags: ['React', 'Three.js', 'Framer Motion', 'TailwindCSS'],
-    image: 'Modern portfolio website with 3D elements, dark theme, and interactive project showcases',
-    link: '#',
-    github: '#',
+    title: 'Keygen',
+    description: 'A powerful, production-ready, cryptographic key generation platform for developers.',
+    tags: [
+      { name: 'Vite', icon: <img src="/icons/vite.png" alt="Vite" className="h-8 w-8" /> },
+      { name: 'React', icon: <img src="/icons/react.png" alt="React" className="h-8 w-8" /> },
+      { name: 'TypeScript', icon: <img src="/icons/typescript.png" alt="TypeScript" className="h-8 w-8" /> },
+      { name: 'TailwindCSS', icon: <img src="/icons/tailwind.png" alt="TailwindCSS" className="h-8 w-8" /> },
+      { name: 'Framer Motion', icon: <img src="/icons/framer-motion.png" alt="Framer Motion" className="h-8 w-8" /> },
+      { name: 'pnpm', icon: <img src="/icons/pnpm.png" alt="pnpm" className="h-8 w-8" /> }
+    ],
+    image: '/webp/proj-keygen.webp',
+    link: 'https://keygen.kiernan.studio',
+    github: 'https://github.com/kiernan-dev/keygen',
     featured: true,
   },
   {
     id: 3,
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates, task assignment, and progress tracking.',
-    tags: ['React', 'Firebase', 'Redux', 'Material UI'],
-    image: 'Task management application with kanban board, task cards, and team collaboration features',
-    link: '#',
-    github: '#',
+    title: 'Cardography',
+    description: 'A comprehensive visual journey through 85 design movements spanning from 1850 to present day.',
+    tags: [
+      { name: 'HTML', icon: <img src="/icons/html.png" alt="HTML" className="h-8 w-8" /> },
+      { name: 'CSS', icon: <img src="/icons/css.png" alt="CSS" className="h-8 w-8" /> },
+      { name: 'JavaScript', icon: <img src="/icons/js.png" alt="JavaScript" className="h-8 w-8" /> }
+    ],
+    image: '/webp/proj-cardography.webp',
+    link: 'https://cardography.kiernan.studio',
+    github: 'https://github.com/kiernan-dev/cardography',
     featured: true,
   },
   {
     id: 4,
-    title: 'Weather Dashboard',
-    description: 'A weather dashboard with location-based forecasts, interactive maps, and historical weather data.',
-    tags: ['JavaScript', 'Chart.js', 'Weather API', 'Leaflet'],
-    image: 'Weather dashboard with temperature graphs, forecast cards, and interactive map',
-    link: '#',
-    github: '#',
+    title: 'ColorStack',
+    description: 'React-based color palette generator with intuitive hex code management and export functionality.',
+    tags: [
+      { name: 'Vite', icon: <img src="/icons/vite.png" alt="Vite" className="h-8 w-8" /> },
+      { name: 'React', icon: <img src="/icons/react.png" alt="React" className="h-8 w-8" /> },
+      { name: 'TypeScript', icon: <img src="/icons/typescript.png" alt="TypeScript" className="h-8 w-8" /> },
+      { name: 'TailwindCSS', icon: <img src="/icons/tailwind.png" alt="TailwindCSS" className="h-8 w-8" /> },
+      { name: 'React Router', icon: <img src="/icons/react-router.png" alt="React Router" className="h-8 w-8" /> }
+    ],
+    image: '/webp/proj-colorstack.webp',
+    link: 'https://colorstack.kiernan.studio',
+    github: 'https://github.com/kiernan-dev/colorstack',
+    featured: true,
   },
   {
     id: 5,
-    title: 'Social Media App',
-    description: 'A social media platform with user profiles, post sharing, real-time messaging, and content discovery.',
-    tags: ['React Native', 'GraphQL', 'AWS Amplify', 'Socket.io'],
-    image: 'Social media app interface showing user profiles, post feed, and messaging features',
-    link: '#',
-    github: '#',
+    title: 'Memorium',
+    description: 'AI-Powered Memorial Platform for generating personalized eulogies, condolence messages, and memorial tributes.',
+    tags: [
+      { name: 'Next.js', icon: <img src="/icons/nextjs.png" alt="Next.js" className="h-8 w-8" /> },
+      { name: 'Node.js', icon: <img src="/icons/nodejs.png" alt="Node.js" className="h-8 w-8" /> },
+      { name: 'TailwindCSS', icon: <img src="/icons/tailwind.png" alt="TailwindCSS" className="h-8 w-8" /> },
+      { name: 'OpenRouter', icon: <img src="/icons/openrouter.png" alt="OpenRouter" className="h-8 w-8" /> },
+      { name: 'OpenAI', icon: <img src="/icons/chatGPT.png" alt="OpenAI" className="h-8 w-8" /> },
+      { name: 'Supabase', icon: <img src="/icons/supabase.png" alt="Supabase" className="h-8 w-8" /> }
+    ],
+    image: '/webp/proj-memorium.webp',
+    link: 'https://memorium.kiernan.studio',
+    github: 'https://github.com/kiernan-dev/memorium',
+    featured: true,
   },
   {
     id: 6,
-    title: 'Fitness Tracker',
-    description: 'A fitness tracking application with workout plans, progress visualization, and social sharing features.',
-    tags: ['Vue.js', 'Express', 'PostgreSQL', 'D3.js'],
-    image: 'Fitness tracking app showing workout statistics, progress charts, and exercise library',
-    link: '#',
-    github: '#',
+    title: 'DockerPimp',
+    description: 'Interactive Docker Command Reference with comprehensive categorized commands, filtering, and search functionality.',
+    tags: [
+      { name: 'Next.js', icon: <img src="/icons/nextjs.png" alt="Next.js" className="h-8 w-8" /> },
+      { name: 'TypeScript', icon: <img src="/icons/typescript.png" alt="TypeScript" className="h-8 w-8" /> },
+      { name: 'TailwindCSS', icon: <img src="/icons/tailwind.png" alt="TailwindCSS" className="h-8 w-8" /> },
+      { name: 'Framer Motion', icon: <img src="/icons/framer-motion.png" alt="Framer Motion" className="h-8 w-8" /> },
+      { name: 'Supabase', icon: <img src="/icons/supabase.png" alt="Supabase" className="h-8 w-8" /> }
+    ],
+    image: '/webp/proj-dockerpimp.webp',
+    link: 'https://dockerpimp.kiernan.studio',
+    github: 'https://github.com/kiernan-dev/dockerpimp',
+    featured: true,
+  },
+  {
+    id: 7,
+    title: 'HealthWise',
+    description: 'AI-powered wellness platform featuring conversational health guidance and natural remedy recommendations.',
+    tags: [
+      { name: 'Vite', icon: <img src="/icons/vite.png" alt="Vite" className="h-8 w-8" /> },
+      { name: 'React', icon: <img src="/icons/react.png" alt="React" className="h-8 w-8" /> },
+      { name: 'TypeScript', icon: <img src="/icons/typescript.png" alt="TypeScript" className="h-8 w-8" /> },
+      { name: 'TailwindCSS', icon: <img src="/icons/tailwind.png" alt="TailwindCSS" className="h-8 w-8" /> },
+      { name: 'OpenAI', icon: <img src="/icons/chatGPT.png" alt="OpenAI" className="h-8 w-8" /> },
+      { name: 'Supabase', icon: <img src="/icons/supabase.png" alt="Supabase" className="h-8 w-8" /> }
+    ],
+    image: '/webp/proj-healthwise.webp',
+    link: 'https://healthwise.kiernan.studio',
+    github: 'https://github.com/kiernan-dev/healthwise',
+    featured: true,
+  },
+  {
+    id: 8,
+    title: 'StoryBook',
+    description: 'Interactive AI Story Generator with narrative generation, AI cover art, interactive editing, and PDF export.',
+    tags: [
+      { name: 'Vite', icon: <img src="/icons/vite.png" alt="Vite" className="h-8 w-8" /> },
+      { name: 'React', icon: <img src="/icons/react.png" alt="React" className="h-8 w-8" /> },
+      { name: 'TypeScript', icon: <img src="/icons/typescript.png" alt="TypeScript" className="h-8 w-8" /> },
+      { name: 'TailwindCSS', icon: <img src="/icons/tailwind.png" alt="TailwindCSS" className="h-8 w-8" /> },
+      { name: 'OpenAI', icon: <img src="/icons/chatGPT.png" alt="OpenAI" className="h-8 w-8" /> },
+      { name: 'Supabase', icon: <img src="/icons/supabase.png" alt="Supabase" className="h-8 w-8" /> }
+    ],
+    image: '/webp/proj-storybook.webp',
+    link: 'https://storybook.kiernan.studio',
+    github: 'https://github.com/kiernan-dev/storybook',
+    featured: true,
   },
 ];
 
@@ -71,7 +146,11 @@ const Projects = () => {
     ? projects 
     : filter === 'featured' 
       ? projects.filter(project => project.featured) 
-      : projects.filter(project => project.tags.includes(filter));
+      : projects.filter(project => 
+          project.tags.some(tag => 
+            typeof tag === 'string' ? tag === filter : tag.name === filter
+          )
+        );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -158,13 +237,18 @@ const ProjectCard = ({ project }) => {
         visible: { y: 0, opacity: 1 }
       }}
       whileHover={{ y: -5 }}
-      className="group relative bg-secondary/20 rounded-lg overflow-hidden gradient-border h-full flex flex-col"
+      className="group relative bg-secondary/20 rounded-lg gradient-border h-full flex flex-col p-1"
     >
-      <div className="relative h-48 overflow-hidden">
-        <img 
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-         src="https://images.unsplash.com/photo-1697256200022-f61abccad430" />
+      <div 
+        className="relative overflow-hidden rounded-lg"
+        style={{
+          height: '200px',
+          backgroundImage: `url("${project.image}")`,
+          backgroundSize: '150%',
+          backgroundPosition: 'top left',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-end gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -189,17 +273,18 @@ const ProjectCard = ({ project }) => {
         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
         <p className="text-gray-400 mb-4 flex-grow">{project.description}</p>
         
-        <div className="flex flex-wrap gap-2 mt-auto">
+        <div className="flex items-center gap-3 mt-auto">
           {project.tags.map((tag, index) => (
-            <span 
+            <div
               key={index}
-              className={cn(
-                "inline-block px-2 py-1 text-xs font-medium rounded-full",
-                "bg-primary/10 text-gray-300"
-              )}
+              className="relative group/icon"
+              title={tag.name}
             >
-              {tag}
-            </span>
+              {tag.icon}
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-black rounded opacity-0 group-hover/icon:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
+                {tag.name}
+              </div>
+            </div>
           ))}
         </div>
       </div>

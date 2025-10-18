@@ -63,28 +63,28 @@ const About = () => {
           
           <motion.div variants={itemVariants} className="space-y-4 text-gray-300 mb-8">
             <p>
-              I'm a passionate software engineer and graphic designer with over 5 years of experience creating exceptional digital experiences that combine functionality with stunning aesthetics.
+              Senior Full‑Stack JavaScript Engineer with 20+ years building and shipping enterprise applications for Fortune 500 brands including Sprint, SAP, Dell, Colgate, Gatorade, Ford, and Burger King.
             </p>
             <p>
-              My approach blends technical expertise with creative vision, allowing me to build solutions that not only work flawlessly but also engage and delight users. I specialize in front-end development, UI/UX design, and creating immersive interactive experiences.
+              Expert in React.js, Next.js, TypeScript, and Node.js with deep expertise in frontend architecture, Agile development, and legacy system modernization. Proven track record implementing CI/CD pipelines, optimizing application performance, and delivering measurable improvements in user experience.
             </p>
             <p>
-              When I'm not coding or designing, you'll find me exploring new technologies, contributing to open-source projects, or seeking inspiration through photography and travel.
+              Strong technical background in HIPAA-compliant applications, accessibility standards (WCAG), scalable microservices architecture, and AI integration with modern development workflows.
             </p>
           </motion.div>
           
           <motion.div variants={itemVariants} className="flex flex-wrap gap-6 mb-8">
             <div>
-              <h3 className="text-xl font-bold mb-1">5+</h3>
+              <h3 className="text-xl font-bold mb-1">20+</h3>
               <p className="text-gray-400">Years Experience</p>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-1">50+</h3>
-              <p className="text-gray-400">Projects Completed</p>
+              <h3 className="text-xl font-bold mb-1">100+</h3>
+              <p className="text-gray-400">Projects Delivered</p>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-1">20+</h3>
-              <p className="text-gray-400">Happy Clients</p>
+              <h3 className="text-xl font-bold mb-1">Fortune 500</h3>
+              <p className="text-gray-400">Enterprise Clients</p>
             </div>
           </motion.div>
           
