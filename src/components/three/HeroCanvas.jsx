@@ -1,5 +1,5 @@
 import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Float, PerspectiveCamera, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -59,8 +59,73 @@ const fragmentShader = `
   }
 `;
 
+const TechIcon = ({ iconPath, position }) => {
+  const texture = useLoader(THREE.TextureLoader, iconPath);
+  
+  return (
+    <Float
+      speed={1.5 + Math.random() * 2}
+      rotationIntensity={1 + Math.random()}
+      floatIntensity={1.5 + Math.random()}
+      position={position}
+    >
+      <mesh>
+        <planeGeometry args={[0.6, 0.6]} />
+        <meshStandardMaterial 
+          map={texture}
+          transparent
+          opacity={0.8}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+    </Float>
+  );
+};
+
 const Scene = () => {
   const groupRef = useRef();
+  
+  // ALL tech icons from directory
+  const techIcons = [
+    '/icons/anthropic.png',
+    '/icons/astro.png',
+    '/icons/canva.png',
+    '/icons/chatGPT.png',
+    '/icons/css.png',
+    '/icons/deepseek.png',
+    '/icons/docker.png',
+    '/icons/express.png',
+    '/icons/figma.png',
+    '/icons/framer-motion.png',
+    '/icons/gh-copilot.png',
+    '/icons/git.png',
+    '/icons/github.png',
+    '/icons/html.png',
+    '/icons/huggingface.png',
+    '/icons/illustrator.png',
+    '/icons/jamstack.png',
+    '/icons/jasmine.png',
+    '/icons/jenkins.png',
+    '/icons/jest.png',
+    '/icons/js.png',
+    '/icons/nextjs.png',
+    '/icons/node.png',
+    '/icons/nodejs.png',
+    '/icons/openrouter.png',
+    '/icons/photoshop.png',
+    '/icons/playwright.png',
+    '/icons/pnpm.png',
+    '/icons/postgreSQL.png',
+    '/icons/react-router.png',
+    '/icons/react.png',
+    '/icons/sketch.png',
+    '/icons/supabase.png',
+    '/icons/tailwind.png',
+    '/icons/typescript.png',
+    '/icons/ubuntu.png',
+    '/icons/vite.png',
+    '/icons/webhooks.png'
+  ];
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
@@ -75,29 +140,16 @@ const Scene = () => {
       <ambientLight intensity={0.2} />
       <directionalLight position={[10, 10, 5]} intensity={0.5} />
       
-      {Array.from({ length: 25 }).map((_, i) => (
-        <Float
+      {techIcons.map((iconPath, i) => (
+        <TechIcon
           key={i}
-          speed={0.5 + Math.random()}
-          rotationIntensity={0.5 + Math.random()}
-          floatIntensity={0.5 + Math.random()}
+          iconPath={iconPath}
           position={[
             (Math.random() - 0.5) * 15,
             (Math.random() - 0.5) * 15,
             (Math.random() - 0.5) * 15,
           ]}
-        >
-          <mesh>
-            <sphereGeometry args={[0.15, 16, 16]} />
-            <meshStandardMaterial 
-              color={new THREE.Color().setHSL(Math.random(), 0.8, 0.5)}
-              roughness={0.2}
-              metalness={0.8}
-              transparent
-              opacity={0.6}
-            />
-          </mesh>
-        </Float>
+        />
       ))}
       
       <Float
