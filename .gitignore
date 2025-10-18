@@ -45,3 +45,7 @@ pids
 # Temporary folders
 tmp/
 temp/
+
+# Resume files
+/public/kiernan-resume-2025-c.html
+/public/kiernan-resume-2025-c.md
