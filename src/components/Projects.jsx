@@ -22,6 +22,7 @@ const projects = [
     link: 'https://venture-map.com',
     github: 'https://github.com/kiernan-dev/venture-map',
     featured: true,
+    category: 'React',
   },
   {
     id: 2,
@@ -38,7 +39,8 @@ const projects = [
     image: '/webp/proj-keygen.webp',
     link: 'https://keygen.kiernan.studio',
     github: 'https://github.com/kiernan-dev/keygen',
-    featured: true,
+    featured: false,
+    category: 'React',
   },
   {
     id: 3,
@@ -52,7 +54,8 @@ const projects = [
     image: '/webp/proj-cardography.webp',
     link: 'https://cardography.kiernan.studio',
     github: 'https://github.com/kiernan-dev/cardography',
-    featured: true,
+    featured: false,
+    category: 'Static HTML',
   },
   {
     id: 4,
@@ -68,24 +71,25 @@ const projects = [
     image: '/webp/proj-colorstack.webp',
     link: 'https://colorstack.kiernan.studio',
     github: 'https://github.com/kiernan-dev/colorstack',
-    featured: true,
+    featured: false,
+    category: 'React',
   },
   {
     id: 5,
     title: 'Memorium',
     description: 'AI-Powered Memorial Platform for generating personalized eulogies, condolence messages, and memorial tributes.',
     tags: [
-      { name: 'Next.js', icon: <img src="/icons/nextjs.png" alt="Next.js" className="h-8 w-8" /> },
+      { name: 'Astro', icon: <img src="/icons/astro.png" alt="Astro" className="h-8 w-8" /> },
       { name: 'Node.js', icon: <img src="/icons/nodejs.png" alt="Node.js" className="h-8 w-8" /> },
       { name: 'TailwindCSS', icon: <img src="/icons/tailwind.png" alt="TailwindCSS" className="h-8 w-8" /> },
       { name: 'OpenRouter', icon: <img src="/icons/openrouter.png" alt="OpenRouter" className="h-8 w-8" /> },
-      { name: 'OpenAI', icon: <img src="/icons/chatGPT.png" alt="OpenAI" className="h-8 w-8" /> },
-      { name: 'Supabase', icon: <img src="/icons/supabase.png" alt="Supabase" className="h-8 w-8" /> }
+      { name: 'OpenAI', icon: <img src="/icons/chatGPT.png" alt="OpenAI" className="h-8 w-8" /> }
     ],
     image: '/webp/proj-memorium.webp',
     link: 'https://memorium.kiernan.studio',
     github: 'https://github.com/kiernan-dev/memorium',
-    featured: true,
+    featured: false,
+    category: 'Astro',
   },
   {
     id: 6,
@@ -101,7 +105,8 @@ const projects = [
     image: '/webp/proj-dockerpimp.webp',
     link: 'https://dockerpimp.kiernan.studio',
     github: 'https://github.com/kiernan-dev/dockerpimp',
-    featured: true,
+    featured: false,
+    category: 'Next.js',
   },
   {
     id: 7,
@@ -119,6 +124,7 @@ const projects = [
     link: 'https://healthwise.kiernan.studio',
     github: 'https://github.com/kiernan-dev/healthwise',
     featured: true,
+    category: 'React',
   },
   {
     id: 8,
@@ -136,6 +142,7 @@ const projects = [
     link: 'https://storybook.kiernan.studio',
     github: 'https://github.com/kiernan-dev/storybook',
     featured: true,
+    category: 'React',
   },
 ];
 
@@ -146,11 +153,7 @@ const Projects = () => {
     ? projects 
     : filter === 'featured' 
       ? projects.filter(project => project.featured) 
-      : projects.filter(project => 
-          project.tags.some(tag => 
-            typeof tag === 'string' ? tag === filter : tag.name === filter
-          )
-        );
+      : projects.filter(project => project.category === filter);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -175,9 +178,9 @@ const Projects = () => {
     'all', 
     'featured', 
     'React', 
-    'JavaScript', 
-    'Vue.js', 
-    'Three.js'
+    'Next.js', 
+    'Astro', 
+    'Static HTML'
   ];
 
   return (
