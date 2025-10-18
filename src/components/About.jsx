@@ -1,9 +1,18 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
 
 const About = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start']
+  });
+
+  // Parallax effect - start offscreen right, move to center when in view
+  const x = useTransform(scrollYProgress, [0, 0.5, 1], ['100%', '0%', '-100%']);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -24,28 +33,31 @@ const About = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div ref={containerRef} className="relative overflow-hidden">
+      {/* Giant KIERNAN Background Text */}
+      <motion.div 
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        style={{ x }}
+      >
+        <div 
+          className="font-bold text-orange-500/20 whitespace-nowrap leading-none select-none font-display"
+          style={{ 
+            fontSize: 'clamp(16rem, 50vw, 60rem)',
+            letterSpacing: '-0.05em'
+          }}
+        >
+          KIERNAN
+        </div>
+      </motion.div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        className="max-w-4xl mx-auto text-center"
       >
-        <motion.div variants={itemVariants} className="perspective">
-          <motion.div
-            whileHover={{ rotateY: 5, rotateX: 5 }}
-            className="gradient-border p-1 rounded-lg overflow-hidden"
-          >
-            <div className="relative aspect-[4/5] rounded-lg overflow-hidden">
-              <img 
-                alt="Software engineer working on design project"
-                className="w-full h-full object-cover"
-               src="https://images.unsplash.com/photo-1687006067259-6de13ca3875e" />
-            </div>
-          </motion.div>
-        </motion.div>
-
         <div>
           <motion.span
             variants={itemVariants}
@@ -56,35 +68,35 @@ const About = () => {
           
           <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-4xl font-bold mb-6"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight"
           >
             Crafting Digital Solutions with <span className="text-gradient">Passion & Precision</span>
           </motion.h2>
           
-          <motion.div variants={itemVariants} className="space-y-4 text-gray-300 mb-8">
-            <p>
-              Senior Full‑Stack JavaScript Engineer with 20+ years building and shipping enterprise applications for Fortune 500 brands including Sprint, SAP, Dell, Colgate, Gatorade, Ford, and Burger King.
+          <motion.div variants={itemVariants} className="space-y-6 text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+            <p className="leading-relaxed">
+              Senior Full‑Stack JavaScript Engineer with <span className="text-white font-semibold">20+ years</span> building and shipping enterprise applications for Fortune 500 brands including <span className="text-white">Sprint, SAP, Dell, Colgate, Gatorade, Ford, Burger King, and many more.</span>
             </p>
-            <p>
-              Expert in React.js, Next.js, TypeScript, and Node.js with deep expertise in frontend architecture, Agile development, and legacy system modernization. Proven track record implementing CI/CD pipelines, optimizing application performance, and delivering measurable improvements in user experience.
+            <p className="leading-relaxed">
+              Specializing in <span className="text-gradient font-semibold">React.js, Next.js, TypeScript, and Node.js</span> with extensive experience in frontend architecture, agile development, and legacy system modernization. Proven track record implementing CI/CD pipelines, optimizing application performance, and delivering measurable improvements in user experience.
             </p>
-            <p>
+            <p className="leading-relaxed">
               Strong technical background in HIPAA-compliant applications, accessibility standards (WCAG), scalable microservices architecture, and AI integration with modern development workflows.
             </p>
           </motion.div>
           
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-6 mb-8">
-            <div>
-              <h3 className="text-xl font-bold mb-1">20+</h3>
-              <p className="text-gray-400">Years Experience</p>
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-8 lg:gap-12 mb-12">
+            <div className="text-center">
+              <h3 className="text-3xl md:text-4xl font-bold mb-2 text-gradient">20+</h3>
+              <p className="text-gray-400 font-medium">Years Experience</p>
             </div>
-            <div>
-              <h3 className="text-xl font-bold mb-1">100+</h3>
-              <p className="text-gray-400">Projects Delivered</p>
+            <div className="text-center">
+              <h3 className="text-3xl md:text-4xl font-bold mb-2 text-gradient">100+</h3>
+              <p className="text-gray-400 font-medium">Projects Delivered</p>
             </div>
-            <div>
-              <h3 className="text-xl font-bold mb-1">Fortune 500</h3>
-              <p className="text-gray-400">Enterprise Clients</p>
+            <div className="text-center">
+              <h3 className="text-3xl md:text-4xl font-bold mb-2 text-gradient">Fortune 500</h3>
+              <p className="text-gray-400 font-medium">Enterprise Clients</p>
             </div>
           </motion.div>
           
@@ -96,6 +108,7 @@ const About = () => {
           </motion.div>
         </div>
       </motion.div>
+      </div>
     </div>
   );
 };

@@ -76,12 +76,12 @@ const App = () => {
                 <About />
               </section>
               
-              <section id="skills" className="py-20">
-                <Skills />
-              </section>
-              
               <section id="projects" className="py-20">
                 <Projects />
+              </section>
+              
+              <section id="skills" className="py-20">
+                <Skills />
               </section>
               
               

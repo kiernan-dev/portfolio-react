@@ -38,7 +38,7 @@ const Hero = () => {
             className="mb-4"
           >
             <span className="text-sm md:text-base font-medium text-gray-400 tracking-wider uppercase">
-              Senior Full-Stack Engineer | React/Node.js
+              Creative Developer & Digital Architect
             </span>
           </motion.div>
           
@@ -48,7 +48,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
           >
-            Creating <span className="text-gradient">Digital Experiences</span> That Matter
+            Engineering <span className="text-gradient">Creative</span> Excellence
           </motion.h1>
           
           <motion.p
@@ -57,7 +57,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8"
           >
-            I blend code and design to build beautiful, functional, and user-centered digital products that solve real problems.
+            Turning ambitious ideas into reality through thoughtful architecture, elegant code, and user-centered design principles.
           </motion.p>
           
           <motion.div
