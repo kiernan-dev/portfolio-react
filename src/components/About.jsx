@@ -101,9 +101,11 @@ const About = () => {
           </motion.div>
           
           <motion.div variants={itemVariants}>
-            <Button className="flex items-center gap-2">
-              <Download size={16} />
-              Download Resume
+            <Button asChild className="flex items-center gap-2">
+              <a href="/Steven-Kiernan-2025-c.pdf" download>
+                <Download size={16} />
+                Download Resume
+              </a>
             </Button>
           </motion.div>
         </div>

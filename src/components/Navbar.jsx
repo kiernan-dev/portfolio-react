@@ -6,8 +6,7 @@ import { Button } from '@/components/ui/button';
 const navItems = [
   { name: 'About', id: 'about' },
   { name: 'Projects', id: 'projects' },
-  { name: 'Skills', id: 'skills' },
-  { name: 'Contact', id: 'contact' }
+  { name: 'Skills', id: 'skills' }
 ];
 
 const Navbar = ({ activeSection, onSectionChange }) => {
