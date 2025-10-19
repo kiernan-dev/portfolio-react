@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Palette, Database, Globe, Cpu, LineChart } from 'lucide-react';
+import { Code, Database, Globe, Cpu, LineChart } from 'lucide-react';
 
 const skillCategories = [
   {
