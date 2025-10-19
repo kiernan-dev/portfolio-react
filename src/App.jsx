@@ -13,6 +13,7 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import Cursor from '@/components/Cursor';
 import LoadingScreen from '@/components/LoadingScreen';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -48,7 +49,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <ErrorBoundary>
       <AnimatePresence mode="wait">
         {loading ? (
           <LoadingScreen key="loading" />
@@ -117,7 +118,7 @@ const App = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </ErrorBoundary>
   );
 };
 

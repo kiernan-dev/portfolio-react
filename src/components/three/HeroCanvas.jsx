@@ -59,14 +59,14 @@ const fragmentShader = `
   }
 `;
 
-const TechIcon = ({ iconPath, position }) => {
+const TechIcon = React.memo(({ iconPath, position, speed, rotationIntensity, floatIntensity }) => {
   const texture = useLoader(THREE.TextureLoader, iconPath);
   
   return (
     <Float
-      speed={1.5 + Math.random() * 2}
-      rotationIntensity={1 + Math.random()}
-      floatIntensity={1.5 + Math.random()}
+      speed={speed}
+      rotationIntensity={rotationIntensity}
+      floatIntensity={floatIntensity}
       position={position}
     >
       <mesh>
@@ -80,7 +80,7 @@ const TechIcon = ({ iconPath, position }) => {
       </mesh>
     </Float>
   );
-};
+});
 
 const Scene = () => {
   const groupRef = useRef();
@@ -127,6 +127,20 @@ const Scene = () => {
     '/icons/webhooks.png'
   ];
 
+  // Memoize positions and animation properties to prevent recalculation on every render
+  const iconProps = useMemo(() => 
+    techIcons.map(() => ({
+      position: [
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * 15,
+      ],
+      speed: 1.5 + Math.random() * 2,
+      rotationIntensity: 1 + Math.random(),
+      floatIntensity: 1.5 + Math.random()
+    })), [techIcons.length]
+  );
+
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     if (groupRef.current) {
@@ -142,13 +156,12 @@ const Scene = () => {
       
       {techIcons.map((iconPath, i) => (
         <TechIcon
-          key={i}
+          key={iconPath}
           iconPath={iconPath}
-          position={[
-            (Math.random() - 0.5) * 15,
-            (Math.random() - 0.5) * 15,
-            (Math.random() - 0.5) * 15,
-          ]}
+          position={iconProps[i].position}
+          speed={iconProps[i].speed}
+          rotationIntensity={iconProps[i].rotationIntensity}
+          floatIntensity={iconProps[i].floatIntensity}
         />
       ))}
       

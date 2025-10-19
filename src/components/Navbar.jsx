@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,9 @@ const navItems = [
 const Navbar = ({ activeSection, onSectionChange }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const onSectionChangeRef = useRef(onSectionChange);
+  onSectionChangeRef.current = onSectionChange;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,12 +34,12 @@ const Navbar = ({ activeSection, onSectionChange }) => {
           }
         }
       }
-      onSectionChange(currentSection);
+      onSectionChangeRef.current(currentSection);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [onSectionChange]);
+  }, []); // Remove onSectionChange from dependencies
 
   const scrollToSection = (sectionId) => {
     if (sectionId === 'home') {

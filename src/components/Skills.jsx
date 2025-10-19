@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Database, Globe, Cpu, LineChart } from 'lucide-react';
 
@@ -157,17 +157,18 @@ const Skills = () => {
         variants={containerVariants}
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
       >
-        {skillCategories.map((category, index) => (
-          <SkillCategory key={index} category={category} />
+        {skillCategories.map((category) => (
+          <SkillCategory key={category.title} category={category} />
         ))}
       </motion.div>
     </div>
   );
 };
 
-const SkillCategory = ({ category }) => {
-  const averageScore = Math.round(
-    category.skills.reduce((sum, skill) => sum + skill.level, 0) / category.skills.length
+const SkillCategory = React.memo(({ category }) => {
+  const averageScore = useMemo(() => 
+    Math.round(category.skills.reduce((sum, skill) => sum + skill.level, 0) / category.skills.length),
+    [category.skills]
   );
 
   return (
@@ -190,14 +191,14 @@ const SkillCategory = ({ category }) => {
       
       <div className="space-y-4">
         {category.skills.map((skill, index) => (
-          <SkillBar key={index} skill={skill} index={index} />
+          <SkillBar key={skill.name} skill={skill} index={index} />
         ))}
       </div>
     </motion.div>
   );
-};
+});
 
-const SkillBar = ({ skill, index }) => {
+const SkillBar = React.memo(({ skill, index }) => {
   return (
     <div>
       <div className="flex justify-between mb-1">
@@ -215,6 +216,6 @@ const SkillBar = ({ skill, index }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Skills;
