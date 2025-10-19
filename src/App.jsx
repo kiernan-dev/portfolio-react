@@ -78,16 +78,16 @@ const App = () => {
                 <About />
               </section>
               
-              <section id="projects" className="py-20">
+              <section id="projects" className="relative py-20">
                 <Projects />
               </section>
               
-              <section id="skills" className="py-20">
+              <section id="skills" className="relative py-20">
                 <Skills />
               </section>
               
               
-              <section id="contact">
+              <section id="contact" className="relative">
                 <Contact />
               </section>
             </main>

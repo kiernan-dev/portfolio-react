@@ -202,7 +202,7 @@ const SkillCategory = React.memo(({ category }) => {
 
 const SkillBar = React.memo(({ skill, index }) => {
   return (
-    <div role="listitem">
+    <div role="listitem" className="relative">
       <div className="flex justify-between mb-1">
         <span className="text-sm font-medium text-gray-300">{skill.name}</span>
         <span className="text-sm font-medium text-gray-400" aria-label={`${skill.name} proficiency: ${skill.level} percent`}>
@@ -210,7 +210,7 @@ const SkillBar = React.memo(({ skill, index }) => {
         </span>
       </div>
       <div 
-        className="h-2 bg-gray-700 rounded-full overflow-hidden" 
+        className="relative h-2 bg-gray-700 rounded-full overflow-hidden" 
         role="progressbar"
         aria-valuenow={skill.level}
         aria-valuemin={0}
