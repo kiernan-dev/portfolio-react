@@ -4,75 +4,111 @@ import { Code, Palette, Database, Globe, Cpu, LineChart } from 'lucide-react';
 
 const skillCategories = [
   {
-    title: 'Frontend Technologies',
+    title: 'Core Frontend',
     icon: <Code className="h-6 w-6" />,
     skills: [
-      { name: 'React.js', level: 95 },
-      { name: 'Next.js', level: 90 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'JavaScript (ES6+)', level: 95 },
-      { name: 'Redux', level: 85 },
-      { name: 'Vue.js', level: 80 },
+      { name: 'HTML5', level: 95 },
+      { name: 'CSS3', level: 95 },
+      { name: 'Javascript (ES6+)', level: 95 },
+      { name: 'Typescript', level: 85 },
+      { name: 'Responsive Design', level: 95 },
+      { name: 'Web APIs', level: 90 },
     ],
   },
   {
-    title: 'AI & Machine Learning',
+    title: 'Frontend Tools & Styling',
+    icon: <Code className="h-6 w-6" />,
+    skills: [
+      { name: 'Webpack/Vite', level: 80 },
+      { name: 'Tailwind CSS', level: 80 },
+      { name: 'Sass/SCSS', level: 95 },
+      { name: 'PostCSS', level: 75 },
+      { name: 'Styled Components', level: 75 },
+      { name: 'CSS Modules', level: 80 },
+    ],
+  },
+  {
+    title: 'Frameworks & Libraries',
+    icon: <Code className="h-6 w-6" />,
+    skills: [
+      { name: 'React.js', level: 90 },
+      { name: 'Next.js', level: 85 },
+      { name: 'Vue.js', level: 70 },
+      { name: 'Astro', level: 75 },
+      { name: 'Svelte', level: 70 },
+      { name: 'Zustand', level: 75 },
+    ],
+  },
+  {
+    title: 'AI Integration',
     icon: <Cpu className="h-6 w-6" />,
     skills: [
-      { name: 'OpenAI API', level: 90 },
-      { name: 'Anthropic Claude', level: 95 },
-      { name: 'Prompt Engineering', level: 90 },
+      { name: 'OpenAI API', level: 80 },
+      { name: 'Claude CLI', level: 85 },
+      { name: 'Prompt Engineering', level: 75 },
       { name: 'Multi-provider Integration', level: 85 },
       { name: 'Ollama', level: 80 },
-      { name: 'LiteLLM', level: 85 },
+      { name: 'LiteLLM', level: 75 },
     ],
   },
   {
-    title: 'Backend & APIs',
+    title: 'Backend Development',
     icon: <Database className="h-6 w-6" />,
     skills: [
-      { name: 'Node.js', level: 90 },
-      { name: 'Express.js', level: 90 },
-      { name: 'RESTful APIs', level: 95 },
-      { name: 'GraphQL', level: 80 },
-      { name: 'PostgreSQL', level: 85 },
-      { name: 'Microservices', level: 80 },
+      { name: 'Node.js', level: 75 },
+      { name: 'Express.js', level: 80 },
+      { name: 'Webhooks', level: 70 },
+      { name: 'Socket.io', level: 60 },
+      { name: 'Serverless Functions', level: 65 },
+      { name: 'JWT Authentication', level: 75 },
+    ],
+  },
+  {
+    title: 'APIs & Databases',
+    icon: <Database className="h-6 w-6" />,
+    skills: [
+      { name: 'RESTful APIs', level: 80 },
+      { name: 'GraphQL', level: 70 },
+      { name: 'PostgreSQL', level: 75 },
+      { name: 'Redis', level: 70 },
+      { name: 'MongoDB', level: 70 },
+      { name: 'Supabase', level: 70 },
     ],
   },
   {
     title: 'DevOps & Cloud',
     icon: <Globe className="h-6 w-6" />,
     skills: [
-      { name: 'Docker', level: 85 },
-      { name: 'Azure', level: 80 },
-      { name: 'CI/CD Pipelines', level: 85 },
-      { name: 'GitHub Actions', level: 80 },
-      { name: 'Kubernetes', level: 75 },
-      { name: 'Nginx', level: 80 },
+      { name: 'Docker', level: 75 },
+      { name: 'Dokploy', level: 70 },
+      { name: 'Kubernetes', level: 55 },
+      { name: 'CI/CD Pipelines', level: 65 },
+      { name: 'AWS/GCP', level: 70 },
+      { name: 'Vercel/Netlify', level: 80 },
     ],
   },
   {
-    title: '3D & Animation',
+    title: 'Animation & 3D',
     icon: <Cpu className="h-6 w-6" />,
     skills: [
-      { name: 'Three.js', level: 85 },
-      { name: 'WebGL', level: 80 },
-      { name: 'GSAP', level: 90 },
-      { name: 'Framer Motion', level: 95 },
-      { name: 'CSS Animations', level: 95 },
-      { name: 'Blender', level: 70 },
+      { name: 'CSS Animations', level: 90 },
+      { name: 'Three.js', level: 75 },
+      { name: 'Anime.js', level: 75 },
+      { name: 'GSAP', level: 75 },
+      { name: 'Framer Motion', level: 80 },
+      { name: 'Lottie', level: 90 },
     ],
   },
   {
-    title: 'Tools & Methods',
+    title: 'Development Tools',
     icon: <LineChart className="h-6 w-6" />,
     skills: [
-      { name: 'Git', level: 95 },
-      { name: 'Agile/Scrum', level: 95 },
-      { name: 'Jest/Testing', level: 85 },
-      { name: 'CI/CD', level: 85 },
-      { name: 'Webpack/Vite', level: 90 },
-      { name: 'Docker', level: 85 },
+      { name: 'Git', level: 90 },
+      { name: 'ESLint', level: 90 },
+      { name: 'Jest/Testing', level: 75 },
+      { name: 'Prettier', level: 85 },
+      { name: 'npm/pnpm', level: 90 },
+      { name: 'VS Code', level: 90 },
     ],
   },
 ];
@@ -130,14 +166,21 @@ const Skills = () => {
 };
 
 const SkillCategory = ({ category }) => {
+  const averageScore = Math.round(
+    category.skills.reduce((sum, skill) => sum + skill.level, 0) / category.skills.length
+  );
+
   return (
     <motion.div
       variants={{
         hidden: { y: 20, opacity: 0 },
         visible: { y: 0, opacity: 1 }
       }}
-      className="bg-secondary/20 rounded-lg p-6 gradient-border"
+      className="relative bg-secondary/20 rounded-lg p-6 gradient-border"
     >
+      <div className="absolute top-0 right-0 -mt-2 -mr-2 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+        {averageScore}
+      </div>
       <div className="flex items-center gap-3 mb-6">
         <div className="p-2 bg-primary/10 rounded-lg text-primary-foreground">
           {category.icon}

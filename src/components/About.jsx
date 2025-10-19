@@ -78,7 +78,7 @@ const About = () => {
               Senior Full‑Stack JavaScript Engineer with <span className="text-white font-semibold">20+ years</span> building and shipping enterprise applications for Fortune 500 brands including <span className="text-white">Sprint, SAP, Dell, Colgate, Gatorade, Ford, Burger King, and many more.</span>
             </p>
             <p className="leading-relaxed">
-              Specializing in <span className="text-gradient font-semibold">React.js, Next.js, TypeScript, and Node.js</span> with extensive experience in frontend architecture, agile development, and legacy system modernization. Proven track record implementing CI/CD pipelines, optimizing application performance, and delivering measurable improvements in user experience.
+              Specializing in <span className="text-gradient font-semibold">React.js, Next.js, TypeScript, and Node.js</span> with extensive experience in frontend architecture, agile development, and legacy system modernization. Proven track record optimizing application performance, delivering measurable improvements in user experience, and implementing CI/CD pipelines.
             </p>
             <p className="leading-relaxed">
               Strong technical background in HIPAA-compliant applications, accessibility standards (WCAG), scalable microservices architecture, and AI integration with modern development workflows.

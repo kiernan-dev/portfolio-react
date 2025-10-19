@@ -199,7 +199,7 @@ const Projects = () => {
           Featured <span className="text-gradient">Projects</span>
         </motion.h2>
         <motion.p variants={itemVariants} className="max-w-2xl mx-auto text-gray-300">
-          Explore my recent projects showcasing my expertise in software development and graphic design.
+          A curated collection of my work spanning full-stack development and visual design.
         </motion.p>
       </motion.div>
 
