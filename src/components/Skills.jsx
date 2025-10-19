@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Database, Globe, Cpu, LineChart } from 'lucide-react';
+import PropTypes from 'prop-types';
+import { GRID } from '@/utils/constants';
 
 const skillCategories = [
   {
@@ -155,7 +157,7 @@ const Skills = () => {
 
       <motion.div
         variants={containerVariants}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className={`grid ${GRID.SKILLS_COLS.mobile} ${GRID.SKILLS_COLS.tablet} ${GRID.SKILLS_COLS.desktop} gap-6`}
       >
         {skillCategories.map((category) => (
           <SkillCategory key={category.title} category={category} />
@@ -189,7 +191,7 @@ const SkillCategory = React.memo(({ category }) => {
         <h3 className="text-xl font-bold">{category.title}</h3>
       </div>
       
-      <div className="space-y-4">
+      <div className="space-y-4" role="list" aria-label={`${category.title} skills`}>
         {category.skills.map((skill, index) => (
           <SkillBar key={skill.name} skill={skill} index={index} />
         ))}
@@ -200,12 +202,21 @@ const SkillCategory = React.memo(({ category }) => {
 
 const SkillBar = React.memo(({ skill, index }) => {
   return (
-    <div>
+    <div role="listitem">
       <div className="flex justify-between mb-1">
         <span className="text-sm font-medium text-gray-300">{skill.name}</span>
-        <span className="text-sm font-medium text-gray-400">{skill.level}%</span>
+        <span className="text-sm font-medium text-gray-400" aria-label={`${skill.name} proficiency: ${skill.level} percent`}>
+          {skill.level}%
+        </span>
       </div>
-      <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+      <div 
+        className="h-2 bg-gray-700 rounded-full overflow-hidden" 
+        role="progressbar"
+        aria-valuenow={skill.level}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`${skill.name} skill level`}
+      >
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${skill.level}%` }}
@@ -217,5 +228,26 @@ const SkillBar = React.memo(({ skill, index }) => {
     </div>
   );
 });
+
+SkillCategory.propTypes = {
+  category: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    icon: PropTypes.element.isRequired,
+    skills: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        level: PropTypes.number.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
+};
+
+SkillBar.propTypes = {
+  skill: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    level: PropTypes.number.isRequired,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+};
 
 export default Skills;

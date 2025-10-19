@@ -14,6 +14,7 @@ import Footer from '@/components/Footer';
 import Cursor from '@/components/Cursor';
 import LoadingScreen from '@/components/LoadingScreen';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import { ANIMATION_TIMING, SCROLL_THRESHOLDS } from '@/utils/constants';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -23,10 +24,10 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, ANIMATION_TIMING.LOADING_SCREEN);
 
     const handleScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.8) {
+      if (window.scrollY > window.innerHeight * SCROLL_THRESHOLDS.BACK_TO_TOP) {
         setShowBackToTop(true);
       } else {
         setShowBackToTop(false);

@@ -113,8 +113,12 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                aria-describedby="email-help"
                 className="w-full px-4 py-3 bg-secondary/20 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
+              <div id="email-help" className="sr-only">
+                Enter your email address for communication
+              </div>
             </div>
             
             <div>
@@ -128,8 +132,12 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
+                aria-describedby="subject-help"
                 className="w-full px-4 py-3 bg-secondary/20 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
+              <div id="subject-help" className="sr-only">
+                Brief description of your inquiry or project
+              </div>
             </div>
             
             <div>
@@ -143,17 +151,25 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows={6}
+                aria-describedby="message-help"
                 className="w-full px-4 py-3 bg-secondary/20 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
               ></textarea>
+              <div id="message-help" className="sr-only">
+                Detailed description of your project or message
+              </div>
             </div>
             
             <Button 
               type="submit" 
               className="w-full flex items-center justify-center gap-2"
               disabled={isSubmitting}
+              aria-describedby={isSubmitting ? "submit-status" : undefined}
             >
               {isSubmitting ? (
-                <>Sending...</>
+                <>
+                  Sending...
+                  <span id="submit-status" className="sr-only">Form is being submitted</span>
+                </>
               ) : (
                 <>
                   Send Message <Send className="h-4 w-4" />

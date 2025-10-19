@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import PropTypes from 'prop-types';
+import { GRID } from '@/utils/constants';
 
 const projects = [
   {
@@ -205,6 +207,8 @@ const Projects = () => {
       <motion.div 
         variants={itemVariants}
         className="flex flex-wrap justify-center gap-2 mb-12"
+        role="group"
+        aria-label="Filter projects by category"
       >
         {filters.map((filterItem) => (
           <Button
@@ -213,6 +217,8 @@ const Projects = () => {
             size="sm"
             onClick={() => setFilter(filterItem)}
             className="capitalize"
+            aria-pressed={filter === filterItem}
+            aria-label={`Filter by ${filterItem}`}
           >
             {filterItem}
           </Button>
@@ -221,7 +227,9 @@ const Projects = () => {
 
       <motion.div
         variants={containerVariants}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className={`grid ${GRID.PROJECTS_COLS.mobile} ${GRID.PROJECTS_COLS.tablet} ${GRID.PROJECTS_COLS.desktop} gap-6`}
+        role="list"
+        aria-label="Portfolio projects"
       >
         {filteredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
@@ -232,25 +240,65 @@ const Projects = () => {
 };
 
 const ProjectCard = ({ project }) => {
+  const [imageLoaded, setImageLoaded] = React.useState(false);
+  const [imageError, setImageError] = React.useState(false);
+
   return (
-    <motion.div
+    <motion.article
       variants={{
         hidden: { y: 20, opacity: 0 },
         visible: { y: 0, opacity: 1 }
       }}
       whileHover={{ y: -5 }}
       className="group relative bg-secondary/20 rounded-lg gradient-border h-full flex flex-col p-1"
+      role="listitem"
+      aria-label={`Project: ${project.title}`}
     >
       <div 
         className="relative overflow-hidden rounded-lg"
         style={{
           height: '200px',
-          backgroundImage: `url("${project.image}")`,
-          backgroundSize: '150%',
-          backgroundPosition: 'top left',
-          backgroundRepeat: 'no-repeat'
         }}
       >
+        {/* Loading placeholder */}
+        {!imageLoaded && !imageError && (
+          <div className="absolute inset-0 bg-gray-700 animate-pulse flex items-center justify-center">
+            <div className="text-gray-500 text-sm">Loading...</div>
+          </div>
+        )}
+        
+        {/* Error placeholder */}
+        {imageError && (
+          <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
+            <div className="text-gray-500 text-sm">Image unavailable</div>
+          </div>
+        )}
+        
+        {/* Project image */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            backgroundImage: `url("${project.image}")`,
+            backgroundSize: '150%',
+            backgroundPosition: 'top left',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+        
+        {/* Preload image */}
+        <img
+          src={project.image}
+          alt={project.title}
+          className="hidden"
+          onLoad={() => {
+            setImageLoaded(true);
+            setImageError(false);
+          }}
+          onError={() => {
+            setImageLoaded(false);
+            setImageError(true);
+          }}
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-end gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -290,8 +338,27 @@ const ProjectCard = ({ project }) => {
           ))}
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
+};
+
+ProjectCard.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    link: PropTypes.string,
+    github: PropTypes.string,
+    tags: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        icon: PropTypes.element.isRequired,
+      })
+    ).isRequired,
+    featured: PropTypes.bool.isRequired,
+    category: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Projects;

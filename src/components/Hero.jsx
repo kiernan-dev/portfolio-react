@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import HeroCanvas from '@/components/three/HeroCanvas';
+
+const HeroCanvas = React.lazy(() => import('@/components/three/HeroCanvas'));
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -26,7 +27,9 @@ const Hero = () => {
   return (
     <div ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <motion.div className="absolute inset-0 z-0" style={{ y: canvasY }}>
-        <HeroCanvas />
+        <Suspense fallback={<div className="w-full h-full bg-background" />}>
+          <HeroCanvas />
+        </Suspense>
       </motion.div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

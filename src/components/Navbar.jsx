@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import PropTypes from 'prop-types';
+import { SCROLL_THRESHOLDS } from '@/utils/constants';
 
 const navItems = [
   { name: 'About', id: 'about' },
@@ -19,7 +21,7 @@ const Navbar = ({ activeSection, onSectionChange }) => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
+      setIsScrolled(scrollPosition > SCROLL_THRESHOLDS.NAVBAR_SCROLL);
 
       const sections = ['home', ...navItems.map(item => item.id)];
       let currentSection = 'home';
@@ -28,7 +30,7 @@ const Navbar = ({ activeSection, onSectionChange }) => {
         const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
+          if (rect.top <= SCROLL_THRESHOLDS.SECTION_DETECTION && rect.bottom >= SCROLL_THRESHOLDS.SECTION_DETECTION) {
             currentSection = sectionId;
             break;
           }
@@ -42,20 +44,25 @@ const Navbar = ({ activeSection, onSectionChange }) => {
   }, []); // Remove onSectionChange from dependencies
 
   const scrollToSection = (sectionId) => {
-    if (sectionId === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      onSectionChange('home');
-    } else {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        window.scrollTo({
-          top: element.offsetTop - 80,
-          behavior: 'smooth'
-        });
-        onSectionChange(sectionId);
-      }
-    }
+    // Close mobile menu first
     setMobileMenuOpen(false);
+    
+    // Add small delay to allow menu to close before scrolling
+    setTimeout(() => {
+      if (sectionId === 'home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        onSectionChange('home');
+      } else {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          window.scrollTo({
+            top: element.offsetTop - SCROLL_THRESHOLDS.SECTION_OFFSET,
+            behavior: 'smooth'
+          });
+          onSectionChange(sectionId);
+        }
+      }
+    }, 100);
   };
 
   return (
@@ -154,6 +161,23 @@ const AnimatedMobileMenu = ({ isOpen, navItems, activeSection, onItemClick }) =>
       </div>
     </motion.div>
   );
+};
+
+Navbar.propTypes = {
+  activeSection: PropTypes.string.isRequired,
+  onSectionChange: PropTypes.func.isRequired,
+};
+
+AnimatedMobileMenu.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  activeSection: PropTypes.string.isRequired,
+  onItemClick: PropTypes.func.isRequired,
 };
 
 export default Navbar;

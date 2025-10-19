@@ -2,6 +2,8 @@ import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Float, PerspectiveCamera, Environment } from '@react-three/drei';
 import * as THREE from 'three';
+import PropTypes from 'prop-types';
+import { ANIMATION_TIMING, SCENE_CONFIG } from '@/utils/constants';
 
 const vertexShader = `
   varying vec3 v_position;
@@ -60,8 +62,52 @@ const fragmentShader = `
 `;
 
 const TechIcon = React.memo(({ iconPath, position, speed, rotationIntensity, floatIntensity }) => {
-  const texture = useLoader(THREE.TextureLoader, iconPath);
-  
+  const [texture, setTexture] = React.useState(null);
+  const [error, setError] = React.useState(false);
+
+  React.useEffect(() => {
+    const loader = new THREE.TextureLoader();
+    loader.load(
+      iconPath,
+      (loadedTexture) => {
+        setTexture(loadedTexture);
+        setError(false);
+      },
+      undefined,
+      (err) => {
+        console.warn(`Failed to load texture: ${iconPath}`, err);
+        setError(true);
+      }
+    );
+  }, [iconPath]);
+
+  // Don't render if texture failed to load
+  if (error) {
+    return null;
+  }
+
+  // Show placeholder while texture is loading
+  if (!texture) {
+    return (
+      <Float
+        speed={speed}
+        rotationIntensity={rotationIntensity}
+        floatIntensity={floatIntensity}
+        position={position}
+      >
+        <mesh>
+          <planeGeometry args={[SCENE_CONFIG.ICON_SIZE, SCENE_CONFIG.ICON_SIZE]} />
+          <meshStandardMaterial 
+            color="#444444"
+            transparent
+            opacity={0.3}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      </Float>
+    );
+  }
+
   return (
     <Float
       speed={speed}
@@ -70,7 +116,7 @@ const TechIcon = React.memo(({ iconPath, position, speed, rotationIntensity, flo
       position={position}
     >
       <mesh>
-        <planeGeometry args={[0.6, 0.6]} />
+        <planeGeometry args={[SCENE_CONFIG.ICON_SIZE, SCENE_CONFIG.ICON_SIZE]} />
         <meshStandardMaterial 
           map={texture}
           transparent
@@ -131,21 +177,21 @@ const Scene = () => {
   const iconProps = useMemo(() => 
     techIcons.map(() => ({
       position: [
-        (Math.random() - 0.5) * 15,
-        (Math.random() - 0.5) * 15,
-        (Math.random() - 0.5) * 15,
+        (Math.random() - 0.5) * SCENE_CONFIG.ICON_SPREAD,
+        (Math.random() - 0.5) * SCENE_CONFIG.ICON_SPREAD,
+        (Math.random() - 0.5) * SCENE_CONFIG.ICON_SPREAD,
       ],
-      speed: 1.5 + Math.random() * 2,
-      rotationIntensity: 1 + Math.random(),
-      floatIntensity: 1.5 + Math.random()
+      speed: ANIMATION_TIMING.FLOAT_SPEED_BASE + Math.random() * ANIMATION_TIMING.FLOAT_SPEED_RANDOM,
+      rotationIntensity: ANIMATION_TIMING.ROTATION_INTENSITY_BASE + Math.random(),
+      floatIntensity: ANIMATION_TIMING.FLOAT_INTENSITY_BASE + Math.random()
     })), [techIcons.length]
   );
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
     if (groupRef.current) {
-      groupRef.current.rotation.y = time * 0.05;
-      groupRef.current.rotation.x = time * 0.02;
+      groupRef.current.rotation.y = time * ANIMATION_TIMING.HERO_ROTATION_SPEED;
+      groupRef.current.rotation.x = time * ANIMATION_TIMING.HERO_ROTATION_X_SPEED;
     }
   });
 
@@ -194,7 +240,7 @@ const CentralObject = () => {
   });
 
   return (
-    <mesh ref={meshRef} position={[0, 0, 0]} scale={3.5}>
+    <mesh ref={meshRef} position={[0, 0, 0]} scale={SCENE_CONFIG.CENTRAL_OBJECT_SCALE}>
       <icosahedronGeometry args={[1, 6]} />
       <shaderMaterial
         fragmentShader={fragmentShader}
@@ -212,12 +258,20 @@ const HeroCanvas = () => {
   return (
     <Canvas dpr={[1, 2]} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
       <color attach="background" args={['#050505']} />
-      <fog attach="fog" args={['#050505', 10, 30]} />
-      <PerspectiveCamera makeDefault position={[0, 0, 10]} fov={50} />
+      <fog attach="fog" args={['#050505', SCENE_CONFIG.FOG_NEAR, SCENE_CONFIG.FOG_FAR]} />
+      <PerspectiveCamera makeDefault position={SCENE_CONFIG.CAMERA_POSITION} fov={SCENE_CONFIG.CAMERA_FOV} />
       <Scene />
       <Environment preset="night" />
     </Canvas>
   );
+};
+
+TechIcon.propTypes = {
+  iconPath: PropTypes.string.isRequired,
+  position: PropTypes.arrayOf(PropTypes.number).isRequired,
+  speed: PropTypes.number.isRequired,
+  rotationIntensity: PropTypes.number.isRequired,
+  floatIntensity: PropTypes.number.isRequired,
 };
 
 export default HeroCanvas;
