@@ -1,5 +1,5 @@
 import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, PerspectiveCamera, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import PropTypes from 'prop-types';
@@ -75,6 +75,7 @@ const TechIcon = React.memo(({ iconPath, position, speed, rotationIntensity, flo
       },
       undefined,
       (err) => {
+        // eslint-disable-next-line no-console
         console.warn(`Failed to load texture: ${iconPath}`, err);
         setError(true);
       }
@@ -132,7 +133,7 @@ const Scene = () => {
   const groupRef = useRef();
   
   // ALL tech icons from directory
-  const techIcons = [
+  const techIcons = useMemo(() => [
     '/icons/anthropic.png',
     '/icons/astro.png',
     '/icons/canva.png',
@@ -171,7 +172,7 @@ const Scene = () => {
     '/icons/ubuntu.png',
     '/icons/vite.png',
     '/icons/webhooks.png'
-  ];
+  ], []);
 
   // Memoize positions and animation properties to prevent recalculation on every render
   const iconProps = useMemo(() => 
@@ -184,7 +185,7 @@ const Scene = () => {
       speed: ANIMATION_TIMING.FLOAT_SPEED_BASE + Math.random() * ANIMATION_TIMING.FLOAT_SPEED_RANDOM,
       rotationIntensity: ANIMATION_TIMING.ROTATION_INTENSITY_BASE + Math.random(),
       floatIntensity: ANIMATION_TIMING.FLOAT_INTENSITY_BASE + Math.random()
-    })), [techIcons.length]
+    })), [techIcons]
   );
 
   useFrame((state) => {
