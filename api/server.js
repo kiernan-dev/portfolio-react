@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     'https://kiernan.studio',
+    'https://portfolio-r.kiernan.studio',
     'http://localhost:3000',
     'http://localhost:8080'
   ],
@@ -99,7 +100,7 @@ router.post('/contact', async (req, res) => {
         <body>
           <div class="container">
             <div class="header">
-              <h2>New Contact Form Submission</h2>
+              <h2>New Contact Form Submission (Portfolio-React)</h2>
             </div>
             <div class="content">
               <div class="field">
@@ -116,7 +117,7 @@ router.post('/contact', async (req, res) => {
               </div>
             </div>
             <div class="footer">
-              Sent from kiernan.studio contact form<br>
+              Sent from portfolio-r.kiernan.studio contact form<br>
               ${new Date().toISOString()}
             </div>
           </div>
