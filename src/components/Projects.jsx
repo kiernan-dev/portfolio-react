@@ -20,7 +20,7 @@ const projects = [
       { name: 'pnpm', icon: <img src="/icons/pnpm.png" alt="pnpm" className="h-8 w-8" /> }
     ],
     image: '/webp/proj-venmap.webp',
-    link: 'https://venturemap.kiernan.studio',
+    link: 'https://venmap.kiernan.studio',
     github: 'https://github.com/kiernan-dev/venture-map',
     featured: true,
     category: 'React',
