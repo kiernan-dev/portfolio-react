@@ -20,15 +20,6 @@ const Footer = () => {
           >
             <Github className="h-4 w-4" />
           </a>
-          <a
-            href="https://yourportfolio.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-400 hover:text-white transition-colors"
-            aria-label="Portfolio"
-          >
-            <Globe className="h-4 w-4" />
-          </a>
         </div>
       </div>
     </footer>
